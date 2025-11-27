@@ -1,8 +1,8 @@
-import { StyleSheet, Text, View } from 'react-native';
-import LoginFormComponent from '../components/LoginForm';
 import React from 'react';
+import LoginForm from '../components/organisms/LoginForm';
 import { FormData } from '../types/FormData';
-import Button from '../components/Button';
+import Typography from '../components/atoms/Typography';
+import Container from '../components/atoms/Container';
 
 export default function LoginScreen() {
   const [formData, setFormData] = React.useState<FormData>({
@@ -19,33 +19,13 @@ export default function LoginScreen() {
   };
 
   return (
-    <View style={styles.container}>
-      <View>
-        <Text>Login</Text>
-      </View>
-      <LoginFormComponent formData={formData} setFormData={setFormData} />
-      <View style={styles.buttonContainer}>
-        <Button title="Login" onPress={handleLogin} />
-        <Button
-          style={{ backgroundColor: 'red' }}
-          title="Cancel"
-          onPress={handleLogin}
-        />
-        <Button title="Reset" onPress={handleLogin} />
-      </View>
-    </View>
+    <Container>
+      <Typography variant="h2">Login with your email and password</Typography>
+      <LoginForm
+        formData={formData}
+        setFormData={setFormData}
+        onSubmit={handleLogin}
+      />
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  buttonContainer: {
-    marginTop: 5,
-    width: '100%',
-  },
-});

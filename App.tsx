@@ -1,11 +1,11 @@
-import LoginScreen from './src/screens/LoginScreen';
-import AppTemplate from './src/templates/AppTemplate';
+import { NavigationContainer } from '@react-navigation/native';
+import AppNavigation from './src/navigation/AppNavigation';
 
 function App() {
   return (
-    <AppTemplate>
-      <LoginScreen />
-    </AppTemplate>
+    <NavigationContainer>
+      <AppNavigation />
+    </NavigationContainer>
   );
 }
 
