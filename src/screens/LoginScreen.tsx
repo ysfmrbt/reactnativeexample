@@ -1,7 +1,8 @@
-import { Button, StyleSheet, Text, View } from 'react-native';
-import LoginFormComponent from '../components/LoginFormComponent';
+import { StyleSheet, Text, View } from 'react-native';
+import LoginFormComponent from '../components/LoginForm';
 import React from 'react';
 import { FormData } from '../types/FormData';
+import Button from '../components/Button';
 
 export default function LoginScreen() {
   const [formData, setFormData] = React.useState<FormData>({
@@ -20,11 +21,17 @@ export default function LoginScreen() {
   return (
     <View style={styles.container}>
       <View>
-        <Text>Login Screen</Text>
+        <Text>Login</Text>
       </View>
       <LoginFormComponent formData={formData} setFormData={setFormData} />
       <View style={styles.buttonContainer}>
         <Button title="Login" onPress={handleLogin} />
+        <Button
+          style={{ backgroundColor: 'red' }}
+          title="Cancel"
+          onPress={handleLogin}
+        />
+        <Button title="Reset" onPress={handleLogin} />
       </View>
     </View>
   );
@@ -35,8 +42,10 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
+    padding: 20,
   },
   buttonContainer: {
-    marginTop: 20,
+    marginTop: 5,
+    width: '100%',
   },
 });

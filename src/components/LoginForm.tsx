@@ -10,9 +10,10 @@ export default function LoginFormComponent({
 }) {
   return (
     <View style={styles.formContainer}>
-      <View>
+      <View style={styles.inputGroup}>
         <Text>Email:</Text>
         <TextInput
+          style={styles.input}
           value={formData.email}
           onChangeText={text => setFormData({ ...formData, email: text })}
           keyboardType="email-address"
@@ -20,9 +21,10 @@ export default function LoginFormComponent({
           autoCorrect={false}
         />
       </View>
-      <View>
+      <View style={styles.inputGroup}>
         <Text>Password:</Text>
         <TextInput
+          style={styles.input}
           value={formData.password}
           onChangeText={text => setFormData({ ...formData, password: text })}
           secureTextEntry
@@ -34,7 +36,20 @@ export default function LoginFormComponent({
 
 const styles = StyleSheet.create({
   formContainer: {
-    width: '80%',
+    width: '100%',
     marginTop: 20,
+  },
+  input: {
+    height: 40,
+    borderColor: '#ccc',
+    borderWidth: 1,
+    marginVertical: 10,
+    paddingHorizontal: 10,
+    paddingVertical: 5,
+    borderRadius: 5,
+  },
+  inputGroup: {
+    marginBottom: 15,
+    paddingHorizontal: 10,
   },
 });
