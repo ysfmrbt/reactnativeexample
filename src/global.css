@@ -1,0 +1,60 @@
+@import 'tailwindcss';
+@import 'uniwind';
+
+@theme {
+  /* radii */
+  --radius-button: 30px;
+  --radius-input: 10px;
+
+  /* backgrounds / surfaces */
+  --color-background: var(--token-background);
+  --color-foreground: var(--token-foreground);
+  --color-surface: var(--token-surface);
+
+  /* brand */
+  --color-brand-primary: var(--token-brand-primary);
+  --color-brand-secondary: var(--token-brand-secondary);
+  --color-brand-tertiary: var(--token-brand-tertiary);
+
+  /* text */
+  --color-text-primary: var(--token-text-primary);
+  --color-text-secondary: var(--token-text-secondary);
+
+  /* borders */
+  --color-border: var(--token-border);
+}
+
+@layer theme {
+  :root {
+    @variant light {
+      --token-background: #ffffff;
+      --token-foreground: #000000;
+      --token-surface: #f4f4f4;
+
+      --token-text-primary: #00582f;
+      --token-text-secondary: #686868;
+
+      --token-border: #e5e7eb;
+
+      --token-brand-primary: #00512c;
+      --token-brand-secondary: #f4f4f4;
+      --token-brand-tertiary: #000000;
+    }
+
+    @variant dark {
+      --token-background: #0b1220;
+      --token-foreground: #ffffff;
+      --token-surface: #111827;
+
+      --token-text-primary: #ffffff;
+      --token-text-secondary: #9ca3af;
+
+      --token-border: #374151;
+
+      /* brightened for accessibility on dark backgrounds */
+      --token-brand-primary: #22c55e;
+      --token-brand-secondary: #1f2937;
+      --token-brand-tertiary: #ffffff;
+    }
+  }
+}

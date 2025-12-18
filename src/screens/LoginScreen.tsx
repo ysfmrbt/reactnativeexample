@@ -19,7 +19,7 @@ export default function LoginScreen() {
   };
 
   return (
-    <Container>
+    <Container className="flex-1">
       <Typography variant="h2">Login with your email and password</Typography>
       <LoginForm
         formData={formData}

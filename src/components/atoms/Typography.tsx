@@ -1,63 +1,44 @@
-import { Text, TextProps, StyleSheet } from 'react-native';
-import {
-  SPACING,
-  FONT_SIZE,
-  FONT_WEIGHT,
-  LINE_HEIGHT,
-  COLORS,
-} from '../../constants/theme';
+import { Text, TextProps } from 'react-native';
+import { tv } from 'tailwind-variants';
 
-type Variant = 'h1' | 'h2' | 'h3' | 'body' | 'caption' | 'label';
+type TypographyVariant = 'h1' | 'h2' | 'h3' | 'body' | 'caption' | 'label';
 
 interface TypographyProps extends TextProps {
-  variant?: Variant;
+  variant?: TypographyVariant;
+  className?: string;
 }
+
+const typographyVariants = tv({
+  base: 'text-foreground',
+  variants: {
+    variant: {
+      h1: 'text-3xl font-bold',
+      h2: 'text-2xl font-bold',
+      h3: 'text-xl font-semibold',
+      body: 'text-base leading-6',
+      caption: 'text-xs text-text-secondary',
+      label: 'text-sm font-semibold text-text-secondary',
+    },
+  },
+  defaultVariants: {
+    variant: 'body',
+  },
+});
 
 export default function Typography({
   variant = 'body',
+  className,
   style,
   children,
   ...props
 }: TypographyProps) {
   return (
-    <Text style={[styles.base, styles[variant], style]} {...props}>
+    <Text
+      className={typographyVariants({ variant, className })}
+      style={style}
+      {...props}
+    >
       {children}
     </Text>
   );
 }
-
-const styles = StyleSheet.create({
-  base: {
-    color: COLORS.text,
-  },
-  h1: {
-    fontSize: FONT_SIZE.xxl,
-    fontWeight: FONT_WEIGHT.bold,
-    marginBottom: SPACING.sm,
-  },
-  h2: {
-    fontSize: FONT_SIZE.xl,
-    fontWeight: FONT_WEIGHT.bold,
-    marginBottom: SPACING.sm,
-  },
-  h3: {
-    fontSize: FONT_SIZE.lg,
-    fontWeight: FONT_WEIGHT.semibold,
-    marginBottom: SPACING.xs,
-  },
-  body: {
-    fontSize: FONT_SIZE.md,
-    fontWeight: FONT_WEIGHT.normal,
-    lineHeight: LINE_HEIGHT.normal,
-  },
-  caption: {
-    fontSize: FONT_SIZE.xs,
-    fontWeight: FONT_WEIGHT.normal,
-    color: COLORS.textSecondary,
-  },
-  label: {
-    fontSize: FONT_SIZE.sm,
-    fontWeight: FONT_WEIGHT.semibold,
-    marginBottom: SPACING.xs,
-  },
-});

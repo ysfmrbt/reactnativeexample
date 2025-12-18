@@ -1,45 +1,49 @@
-import { StyleSheet, View, ViewProps } from 'react-native';
-import { SPACING } from '../../constants/theme';
+import { View, ViewProps } from 'react-native';
+import { tv } from 'tailwind-variants';
 
-type Variant = 'default' | 'compact' | 'spacious';
+type Spacing = 'none' | 'sm' | 'md' | 'lg';
 
 interface ContainerProps extends ViewProps {
-  variant?: Variant;
+  spacing?: Spacing;
   centered?: boolean;
+  className?: string;
 }
 
+const containerVariants = tv({
+  base: '',
+  variants: {
+    spacing: {
+      none: '',
+      sm: 'p-3',
+      md: 'p-5',
+      lg: 'p-8',
+    },
+    centered: {
+      true: 'items-center justify-center',
+      false: '',
+    },
+  },
+  defaultVariants: {
+    spacing: 'md',
+    centered: false,
+  },
+});
+
 export default function Container({
-  variant = 'default',
+  spacing = 'md',
   centered = false,
+  className,
   style,
   children,
   ...props
 }: ContainerProps) {
   return (
     <View
-      style={[styles.base, styles[variant], centered && styles.centered, style]}
+      className={containerVariants({ spacing, centered, className })}
+      style={style}
       {...props}
     >
       {children}
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  base: {
-    flex: 1,
-  },
-  default: {
-    padding: SPACING.xl,
-  },
-  compact: {
-    padding: SPACING.md,
-  },
-  spacious: {
-    padding: SPACING.xxxl,
-  },
-  centered: {
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-});
