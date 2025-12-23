@@ -5,11 +5,15 @@
   /* radii */
   --radius-button: 30px;
   --radius-input: 10px;
+  --radius-pill: 999px;
+  --radius-card: 24px;
+  --radius-tabbar: 28px;
 
   /* backgrounds / surfaces */
   --color-background: var(--token-background);
   --color-foreground: var(--token-foreground);
   --color-surface: var(--token-surface);
+  --color-surface-muted: #f3f5f4;
 
   /* brand */
   --color-brand-primary: var(--token-brand-primary);
@@ -19,9 +23,30 @@
   /* text */
   --color-text-primary: var(--token-text-primary);
   --color-text-secondary: var(--token-text-secondary);
+  --color-text-pressable: var(--token-text-pressable);
+  --color-selected: var(--color-selected);
+
+  /* icons */
+  --color-icon-active: var(--token-brand-primary);
+  --color-icon-inactive: #6e8c7f;
 
   /* borders */
   --color-border: var(--token-border);
+  --color-border-subtle: #e5e7eb;
+
+  /* shadows */
+  --shadow-soft: 0 6px 12px rgba(0, 0, 0, 0.06);
+  --shadow-card: 0 12px 24px rgba(0, 0, 0, 0.12);
+  --shadow-floating: 0 -6px 16px rgba(0, 0, 0, 0.08);
+
+  /* spacing */
+  --space-section-x: 24px;
+  --space-section-y: 16px;
+  --space-rail-gap: 20px;
+
+  /* HomeScreen gradient colors */
+  --color-gradient-base: #c9a067;
+  --color-gradient-overlay: #b8914f;
 }
 
 @layer theme {
@@ -30,6 +55,9 @@
       --token-background: #ffffff;
       --token-foreground: #000000;
       --token-surface: #f4f4f4;
+      --token-text-pressable: #fff;
+
+      --color-selected: #e6f4ea;
 
       --token-text-primary: #00582f;
       --token-text-secondary: #686868;
@@ -44,17 +72,49 @@
     @variant dark {
       --token-background: #0b1220;
       --token-foreground: #ffffff;
+      --token-text-pressable: #d1d5db;
       --token-surface: #111827;
+
+      --color-selected: #144d2f;
 
       --token-text-primary: #ffffff;
       --token-text-secondary: #9ca3af;
 
       --token-border: #374151;
 
-      /* brightened for accessibility on dark backgrounds */
       --token-brand-primary: #22c55e;
       --token-brand-secondary: #1f2937;
       --token-brand-tertiary: #ffffff;
     }
+  }
+}
+
+@layer utilities {
+  .bg-surface-muted {
+    background-color: var(--color-surface-muted);
+  }
+
+  .shadow-soft {
+    box-shadow: var(--shadow-soft);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .shadow-floating {
+    box-shadow: var(--shadow-floating);
+  }
+
+  .rounded-pill {
+    border-radius: var(--radius-pill);
+  }
+
+  .rounded-card {
+    border-radius: var(--radius-card);
+  }
+
+  .rounded-tabbar {
+    border-radius: var(--radius-tabbar);
   }
 }

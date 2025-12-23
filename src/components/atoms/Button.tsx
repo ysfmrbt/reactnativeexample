@@ -75,7 +75,7 @@ const buttonVariants = tv({
       tone: 'primary',
       class: {
         root: 'bg-brand-primary',
-        text: 'text-white',
+        text: 'text-text-pressable',
       },
     },
     {

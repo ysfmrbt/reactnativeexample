@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from 'react';
-import { StatusBar, View } from 'react-native';
+import { StatusBar, View, useColorScheme } from 'react-native';
 import { Uniwind, useUniwind } from 'uniwind';
 import {
   SafeAreaListener,
@@ -8,10 +8,11 @@ import {
 import ScreenTemplate from './ScreenTemplate';
 
 export default function AppTemplate(props: PropsWithChildren) {
-  const { theme, hasAdaptiveThemes } = useUniwind();
+  const { theme } = useUniwind();
+  const systemScheme = useColorScheme();
 
-  const effectiveTheme = hasAdaptiveThemes ? 'system' : theme;
-  const isDarkMode = effectiveTheme === 'dark';
+  const isDarkMode =
+    theme === 'dark' || (theme === 'system' && systemScheme === 'dark');
 
   return (
     <SafeAreaProvider>
@@ -21,7 +22,7 @@ export default function AppTemplate(props: PropsWithChildren) {
         }}
       >
         <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-        <View className="flex-1">
+        <View className="flex-1" key={theme}>
           <ScreenTemplate>{props.children}</ScreenTemplate>
         </View>
       </SafeAreaListener>
